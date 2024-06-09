@@ -20,18 +20,47 @@ This program runs on EVM along with ".sol" as extension. We can either run it on
 
 ### Executing program
 
-* How to run the program
-* Step-by-step bullets
+We need a solidity compatible virtual machine in order to run this program.
+Create a new file with ".sol" extension
+
+1. Creating variables
 ```
-code blocks for commands
+// public variables here
+    string public tokenName = "Sparsh";
+    string public tokenAbbrv = "SP";
+    uint256 public totalSupply = 0; //Initial token supply
 ```
+2. Mapping variables
+```
+   // mapping variable here
+     mapping(address =>uint256) public balances;
+```
+3. minting of tokens
+```
+    // mint function
+    function mint(address _to, uint256 _value) public{ //Private to make sure no one mints it
+       totalSupply += _value;
+       balances[_to] += _value;
+    }
+```
+4. Burning of tokens
+``` 
+    // burn function
+    function burn(address _from, uint256 _value)public { 
+       require(balances[_from] >= _value, "Balance isn't sufficient");
+       totalSupply -= _value;
+       balances[_from] -= _value;
+    }
+```
+Once done implementing it you are required to press "Ctrl + S" or Compile the program.
+
+After compiling, it;s time to deploy, deploy the program and look out for the various functions created in order to make the program feasible.
+
 
 ## Help
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+You can either use 'if' statement instead of 'require' statement in burning statement.
+
 
 ## Authors
 
