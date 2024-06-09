@@ -23,16 +23,16 @@ contract MyToken {
     uint256 public totalSupply = 0; //Initial token supply
 
     // mapping variable here
-     mapping(address => uint256) public balances;
+     mapping(address =>uint256) public balances;
 
     // mint function
-    function mint(address _to, uint256 _value) public { //Private to make sure no one mints it
+    function mint(address _to, uint256 _value) public{ //Private to make sure no one mints it
        totalSupply += _value;
        balances[_to] += _value;
     }
     // burn function
-    function burn(address _from, uint256 _value) public { 
-       require(balances[_from] >= _value, "Balance is not sufficient");
+    function burn(address _from, uint256 _value)public { 
+       require(balances[_from] >= _value, "Balance isn't sufficient");
        totalSupply -= _value;
        balances[_from] -= _value;
     }
